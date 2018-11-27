@@ -1,11 +1,16 @@
+import operator
 import networkx as nx
 import json 
 import re
-from networkx import *
+import operator
+import pprint
+
+
 
 
 
 g = nx.Graph()
+G = nx.Graph()
 data = ""
 node_1 = []
 node_2 = []
@@ -31,19 +36,19 @@ slices = []
 
 for nn in node_2:
 	slices.append(nn.split("\t"))
-	
-for ss in slices:
-	node_s.append(ss[0])
+    
 	
 for i in range(len(slices) - 1):
 	node_s.append(slices[i][0])
 	node_m.append(slices[i][1])
 	edge_weight.append(slices[i][2].rstrip())
-	
 
 
-
-
-
-
-
+g.add_nodes_from(node_s)
+g.add_nodes_from(node_m)
+#print(list(zip(node_s,node_m,edge_weight)))
+pairs = list(zip(node_s,node_m))
+#g.add_edges_from(pairs)
+G.add_nodes_from([(1,2),(1,3)])
+G.add_edges_from([(1,2),(1,3)])
+nx.draw(G)
